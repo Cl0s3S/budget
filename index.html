@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Budget</title>
+
+  <!-- PWA / mobile -->
+  <meta name="theme-color" content="#0c0c0e">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+
+  <!-- fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Syne:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- style -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <div class="noise"></div>
+
+  <!-- ─── header ───────────────────────── -->
+  <header class="header">
+    <div class="header-inner">
+      <div class="logo">budget<span class="logo-dot">.</span></div>
+      <div class="month-chip" id="month-label"></div>
+    </div>
+  </header>
+
+  <main class="main">
+
+    <!-- ─── hero ───────────────────────── -->
+    <section class="hero" data-anim="fade-up">
+      <div class="hero-amount" id="hero-left">50 €</div>
+      <div class="hero-sub">disponible ce mois</div>
+
+      <div class="hero-bar-wrap">
+        <div class="hero-bar" id="hero-bar"></div>
+      </div>
+
+      <div class="hero-stats">
+        <span class="stat">
+          <span class="stat-lbl">budget</span>
+          <span class="stat-val" id="stat-budget">50 €</span>
+        </span>
+
+        <span class="stat-sep"></span>
+
+        <span class="stat">
+          <span class="stat-lbl">dépensé</span>
+          <span class="stat-val" id="stat-spent">0 €</span>
+        </span>
+
+        <span class="stat-sep"></span>
+
+        <span class="stat">
+          <span class="stat-lbl">épargné</span>
+          <span class="stat-val" id="stat-saved">0 €</span>
+        </span>
+      </div>
+    </section>
+
+    <!-- ─── chart ──────────────────────── -->
+    <section class="chart-section" data-anim="fade-up" data-delay="100">
+      <div class="chart-wrap">
+        <canvas id="donut" width="260" height="260"></canvas>
+
+        <div class="chart-center">
+          <div class="chart-center-val" id="chart-center-val">50 €</div>
+          <div class="chart-center-lbl">restant</div>
+        </div>
+      </div>
+
+      <div class="legend" id="legend"></div>
+    </section>
+
+    <!-- ─── envelopes ──────────────────── -->
+    <section class="envelopes" data-anim="fade-up" data-delay="200">
+      <div class="section-label">enveloppes</div>
+      <div class="env-grid" id="env-grid"></div>
+    </section>
+
+    <!-- ─── add expense ────────────────── -->
+    <section class="add-section" data-anim="fade-up" data-delay="300">
+      <div class="section-label">nouvelle dépense</div>
+
+      <div class="form-card">
+        <input type="text" id="dep-name" placeholder="description" autocomplete="off" />
+        <input type="number" id="dep-amount" placeholder="montant €" min="0" step="0.01" autocomplete="off" />
+        <select id="dep-cat"></select>
+
+        <button id="add-btn" type="button">
+          <span class="btn-plus">+</span> ajouter
+        </button>
+      </div>
+    </section>
+
+    <!-- ─── add income ─────────────────── -->
+    <section class="add-income-section" data-anim="fade-up" data-delay="350">
+      <div class="section-label">ajouter de l'argent</div>
+
+      <div class="form-card">
+        <input type="text" id="inc-name" placeholder="source (ex: argent de poche)" autocomplete="off" />
+        <input type="number" id="inc-amount" placeholder="montant €" min="0" step="0.01" autocomplete="off" />
+
+        <button id="inc-btn" class="btn-income" type="button">
+          <span class="btn-plus">+</span> encaisser
+        </button>
+      </div>
+    </section>
+
+    <!-- ─── stats ──────────────────────── -->
+    <section class="stats-section" data-anim="fade-up" data-delay="400">
+      <div class="section-label">analyse</div>
+      <div id="stats" class="stats-list"></div>
+    </section>
+
+    <!-- ─── history ────────────────────── -->
+    <section class="history-section" data-anim="fade-up" data-delay="500">
+      <div class="history-header">
+        <div class="section-label" style="margin-bottom:0">historique</div>
+        <button id="clear-btn" class="btn-clear" type="button">tout effacer</button>
+      </div>
+
+      <div id="hist-list"></div>
+    </section>
+
+  </main>
+
+  <!-- scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+  <script src="app.js"></script>
+
+</body>
+</html>
